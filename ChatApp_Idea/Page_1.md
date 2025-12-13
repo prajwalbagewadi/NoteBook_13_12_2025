@@ -1,1 +1,45 @@
+# WhatsApp:
+1. Sender encrypts the message.
+2. The sender sends the message to the Server.
+3. Server: checks if the Receiver is online.
+    If ( Receiver is online ) {  
+     // Deliver the message to the Receiver.
+    } else { 
+    // add message to a queue or the Waiting Area of waiting messages to be delivered 
+  }
+4. The receiver receives the message, decrypts it, and displays it.
 
+
+# Message Ticks (Status of Delivery):
+1. Sent to Server. Single tick.
+2. Delivered. The receiver receives the message. Double tick.
+3. Receiver reads the message. Blue tick.
+
+
+# Message deleted from WhatsApp Server:
+1. After delivery. WhatsApp deletes the message from the Server.
+2. Only the Receiver Device stores the message in its local DB.
+
+# Omegle:
+1. Omegle connects two strangers randomly for:
+2. text chat.
+3. video call.
+4. No profile.
+5. No login.
+6. No friends.
+7. Steps:
+  1. The user client creates a temporary sessionId.
+  2. User chooses chat type: text or video. And Interests tags, eg: coding, music
+  3. All Users wait in the waiting queue.
+  4. If ( Interests given ) {
+     // Match with someone who has at least 1 common interest.
+     } else {
+     // Match with the first available user.
+     }
+     ## Note: Queue + HashMap System.
+  5. Once matched, the server links UserA <-> UserB, and both strangers get connected.
+
+
+
+
+     

@@ -40,3 +40,30 @@ public class Main {
     }
 }
 ```
+```
+// add element to end of the array
+class ArrayUtils {
+    public static int addElementAtEnd(int arrutil[],int size,int capacity,int value ){
+        if(size == capacity){
+            System.out.println("array is full.");
+        }
+        arrutil[size]=value;
+        size++;
+        return size;
+        /*
+        note:Both main() and addElement() point to the same array in heap memory.
+        */
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        int arr[]=new int[5];
+        int size=0;
+        size=ArrayUtils.addElementAtEnd(arr,size,arr.length,10);
+        System.out.println("arr[0]:"+arr[0]);
+        System.out.println("size:"+size);
+    }
+}
+```

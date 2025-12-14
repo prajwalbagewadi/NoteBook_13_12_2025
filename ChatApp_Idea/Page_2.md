@@ -67,3 +67,56 @@ class Main {
     }
 }
 ```
+```
+import java.util.Scanner;
+
+class ArrayUtils {
+    public static int addElementAtEnd(int arrutil[],int size,int capacity,int value){
+        if(size == capacity){
+            System.out.println("couldn't add the value:"+value+" array is full.");
+        }
+        arrutil[size]=value;
+        size++;
+        return size;
+        /*
+        note:Both main() and addElement() point to the same array in heap memory.
+        */
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int arr[]=new int[5];
+        int size=0;
+        int input=0;
+        do{
+            System.out.println("press 1. to enter value.");
+            System.out.println("press 2. to display the array.");
+            System.out.println("press 3. to exit.");
+            System.out.println("Enter input:");
+            input=sc.nextInt();
+            switch(input){
+                case 1:{
+                    System.out.println("Enter value:");
+                    int val=sc.nextInt();
+                    size=ArrayUtils.addElementAtEnd(arr,size,arr.length,val);
+                }
+                break;
+                case 2:{
+                    System.out.println("array:");
+                    for(int i=0; i<=size; i++){
+                        System.out.print(arr[i]+" ");
+                    }
+                }
+                break;
+                case 3:{
+                    System.out.println("System has exited");
+                }
+            }
+
+        }while(input!=3);
+
+    }
+}
+```

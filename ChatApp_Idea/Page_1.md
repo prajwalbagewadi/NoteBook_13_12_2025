@@ -40,6 +40,38 @@
   5. Once matched, the server links UserA <-> UserB, and both strangers get connected.
 
 
+# What session means Omegle:
+1. Session represents a temporary chat connection between two users.
 
+# Session Flow in Omegle:
+1. User A opens app.
+2. User B opens app.
+3. Omegle creates temporary session IDs for users A, B.
+      1. Get/sessionId.
+      2. sessionId = randomUUID. (Universally Unique Identifier).
+       3. Stored In server memory (not DB).
+       4. Sent back to the client.
+       5. Used for every message request.
+4. Server pairs user A and user B.
+     1. Server maintains a waitingQueue.
+          [Session1, Session2, Session3]
+     2. When two sessions (users) are available.
+          pair(Session1, Session2)
+     3. Now both sessions point to each other.
+          Session1.partner = Session2
+          Session2.partner = Session1
+5. Chat session starts messages are exchanged.
+     1. Client sends :
+          {
+               "sessionId":"a123",
+               "message":"hi"  
+           }  
+      2. Server logic:
+           sessionSender=sessionMap.get("a123")
+           sessionReciever=sessionSender.partner
+           sendMessage(sessionReciever,"hi")
 
-     
+6. One user disconnects 
+     1. 
+7. Server ends the session (discards data).
+

@@ -16,7 +16,22 @@
 	    1. Spring Boot DevTools [Developer Tools]: Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
 	    2. Spring Web [Web]: Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 2. create project structure: 
-  1. Controller: The entry point that receives user requests and sends back the final response.
+  	1. Controller: The entry point that receives user requests and sends back the final response.
 	2. Service: The brain that handles all the logic, rules, and calculations of the application.
 	3. Repository: The data access layer that handles reading from and writing to the database.
 	4. Model: The blueprint that defines the structure and shape of the data being used.
+3. create file com.example.api>Controller>"HomeController.java":
+   ```
+   package com.example.api.Controller;
+
+	import org.springframework.web.bind.annotation.GetMapping;
+	import org.springframework.web.bind.annotation.RestController;
+
+	@RestController
+	public class HomeController {
+    	@GetMapping("/")
+    	public String home(){
+        	return "Spring boot dev tools running.";
+    	}
+	}
+   ```

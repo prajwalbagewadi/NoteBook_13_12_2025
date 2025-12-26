@@ -161,27 +161,44 @@ export default function Screen2({ route, navigation }) {
       >
         chatting
       </Text>
-      <TextInput
-        value={topic} // bind value to state
-        onChangeText={setTopic} // update state on typing
-        style={{
-          marginTop: 10,
-          marginLeft: 15,
-          marginRight: 15,
-          borderRadius: 70,
-          backgroundColor: "#B60808",
-          color: "#F7F7F7",
-          width: 392,
-          height: 84,
-          fontFamily: "Ndot",
-          fontSize: 24,
-          textAlign: "left",
-          textAlignVertical: "center",
-          padding: 20,
-        }}
-        placeholderTextColor={"#F7F7F7"}
-        placeholder="Topic to start talking."
-      />
+      <View style={{ position: "relative" }}>
+        {!topic && (
+          <Text
+            style={{
+              position: "absolute",
+              left: 35,
+              top: 37,
+              fontFamily: "Ndot",
+              fontSize: 24,
+              color: "#F7F7F7",
+              zIndex: 1,
+            }}
+          >
+            Topic to start talking.
+          </Text>
+        )}
+        <TextInput
+          value={topic} // bind value to state
+          onChangeText={setTopic} // update state on typing
+          style={{
+            marginTop: 10,
+            marginLeft: 15,
+            marginRight: 15,
+            borderRadius: 70,
+            backgroundColor: "#B60808",
+            color: "#F7F7F7",
+            width: 392,
+            height: 84,
+            fontFamily: "Ndot",
+            fontSize: 24,
+            textAlign: "left",
+            textAlignVertical: "center",
+            padding: 20,
+          }}
+          // placeholderTextColor={"#F7F7F7"}
+          // placeholder="Topic to start talking."
+        />
+      </View>
       <TouchableOpacity
         onPress={findPerson} // send sessionId + topic
         style={{

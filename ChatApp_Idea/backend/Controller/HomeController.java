@@ -1,13 +1,14 @@
 package com.example.api.Controller;
 
+import com.example.api.Model.Person;
 import com.example.api.Service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class HomeController {
     @Autowired
     SessionService ss;
@@ -21,6 +22,15 @@ public class HomeController {
     public HashMap<String,String> createSessionId(){
         HashMap<String,String> resp = new HashMap<>();
         resp.put("sessionId",ss.generateSessionId());
+        return resp;
+    }
+
+    @PostMapping("/findPerson")
+    public HashMap<String,String> addPersonQueue(@RequestBody Person person){
+        HashMap<String,String> resp = new HashMap<>();
+        System.out.println(person.toString());
+        resp.put("queueStatus",ss.addToWaitQueue(person));
+        resp.put("serverStatus","response: Server successfully received the response.");
         return resp;
     }
 }

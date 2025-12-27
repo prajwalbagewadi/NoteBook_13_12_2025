@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class HomeController {
     @Autowired
     SessionService ss;
+    Person person;
 
     @GetMapping("/")
     public String home(){
@@ -21,7 +22,10 @@ public class HomeController {
     @GetMapping("/createSessionId")
     public HashMap<String,String> createSessionId(){
         HashMap<String,String> resp = new HashMap<>();
-        resp.put("sessionId",ss.generateSessionId());
+        String sessionId=ss.generateSessionId();
+        person = new Person();
+        person.setSessionId(sessionId);
+        resp.put("sessionId",sessionId);
         return resp;
     }
 

@@ -75,3 +75,11 @@
      1. 
 7. Server ends the session (discards data).
 
+# Core idea of how chat works (simple):
+1. Chat = Send → Store/Route → Receive
+2. User A types a message
+3. The message is sent to a server
+4. Server finds who should receive it
+5. Server delivers it to User B
+6. User B’s UI displays it. That’s it.
+

@@ -9,4 +9,13 @@ public class Node {
         this.person=person;
         this.next=null; //Next is null by default for a new last node
     }
+
+    public Person getPerson(){
+        return this.person;
+    }
+
+    public Node getNext(){
+        return this.next;
+    }
 }
+

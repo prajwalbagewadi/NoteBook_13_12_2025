@@ -27,6 +27,36 @@ public class WaitQueue {
         //link the newNode to the end of the list.
         currentNode.next=newNode;
     }
+    //delete node at pos
+    public Node delete(int pos){
+        Node temp=null;
+        //Check if list is empty
+        if(head==null){
+            return null;
+        }
+        //If position is 0
+        if(pos==0){
+            temp=head;
+            head=head.next;
+            return temp;
+        }
+        //Initialize
+        int index=0;
+        Node currentNode=head;
+        //Traverse to node before target
+        while(currentNode.next!=null && index<pos-1){
+            currentNode=currentNode.next;
+            index++;
+        }
+        //Check position validity
+        if(currentNode.next==null){
+            return null;
+        }
+        temp=currentNode.next;
+        currentNode.next=temp.next;
+        return temp;
+    }
+    //prints the list
     public void print(){
         System.out.println("Printing Queue:");
         Node currentNode = head;
@@ -35,6 +65,7 @@ public class WaitQueue {
             currentNode=currentNode.next;
         }
     }
+    //prints the count of elements in list
     public void count(){
         int count=0;
         Node currentNode = head;
@@ -44,6 +75,7 @@ public class WaitQueue {
         }
         System.out.println("count:"+count);
     }
+    //verify if a person is already in list
     public boolean verifyUniqueId(Person person){
         Node currentNode = head;
         while(currentNode!=null){
@@ -53,5 +85,16 @@ public class WaitQueue {
             currentNode=currentNode.next;
         }
         return true; // unique
+    }
+    //check if list is empty
+    public boolean isEmpty(){
+        if(this.head==null){
+            return true;
+        }
+        return false;
+    }
+    //ilterator
+    public Node ilterator(){
+        return head; // Return the head to manually traverse outside.
     }
 }

@@ -1,5 +1,6 @@
 package com.example.api.Controller;
 
+import com.example.api.Model.Message;
 import com.example.api.Model.Person;
 import com.example.api.Service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class HomeController {
         System.out.println(person.toString());
         resp.put("queueStatus",ss.addToWaitQueue(person));
         resp.put("serverStatus","response: Server successfully received the response.");
+        return resp;
+    }
+
+    @PostMapping("/sendMessage")
+    public HashMap<String,String> sendMessage(@RequestBody Message message){
+        HashMap<String,String> resp = new HashMap<>();
+        resp.put("status",ss.sendMessage(message));
         return resp;
     }
 }

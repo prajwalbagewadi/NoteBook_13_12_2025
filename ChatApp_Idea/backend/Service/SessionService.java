@@ -1,8 +1,6 @@
 package com.example.api.Service;
 
-import com.example.api.Model.Node;
-import com.example.api.Model.Person;
-import com.example.api.Model.WaitQueue;
+import com.example.api.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,8 @@ public class SessionService {
 
     @Autowired
     WaitQueue wq;
+    @Autowired
+    MessageQueue mq;
 
     private String sessionId;
     public String generateSessionId(){
@@ -69,4 +69,15 @@ public class SessionService {
 //        return "response: Person added to WaitQueue.";
         return res;
     }
+
+    public String sendMessage(Message message){
+        String res="";
+        mq.insert(message);
+        res="message sent.";
+        mq.print();
+        System.out.println("MsgQueueCount:"+mq.count());
+        return res;
+    }
+
+
 }

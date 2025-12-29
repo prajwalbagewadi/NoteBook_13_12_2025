@@ -4,6 +4,7 @@ import com.example.api.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 /*
@@ -72,6 +73,7 @@ public class SessionService {
 
     public String sendMessage(Message message){
         String res="";
+        message.setTimeStamp(LocalDateTime.now());
         mq.insert(message);
         res="message sent.";
         mq.print();
@@ -79,5 +81,8 @@ public class SessionService {
         return res;
     }
 
+    public Message receiveMessage(String sessionId){
+        return mq.findMsg(sessionId);
+    }
 
 }

@@ -45,4 +45,12 @@ public class HomeController {
         resp.put("status",ss.sendMessage(message));
         return resp;
     }
+
+    @PostMapping("/receiveMessage")
+    public Message receiveMessage(@RequestBody String sessionId){
+        HashMap<String,String> resp = new HashMap<>();
+        System.out.println("sessionId:"+sessionId);
+        System.out.println("receiveMessage:"+ss.receiveMessage(sessionId).toString());
+        return ss.receiveMessage(sessionId);
+    }
 }

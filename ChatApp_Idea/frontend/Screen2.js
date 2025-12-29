@@ -95,7 +95,7 @@ export default function Screen2({ route, navigation }) {
   if (!fontLoaded) {
     return (
       <view style={{ fontFamily: "Ndot", fontSize: 24, color: "#0f0f0f" }}>
-        Loading...
+        <Text>Loading...</Text>
       </view>
     );
   }

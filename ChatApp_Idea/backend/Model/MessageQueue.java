@@ -2,6 +2,8 @@ package com.example.api.Model;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class MessageQueue {
     MessageNode head;
@@ -39,5 +41,19 @@ public class MessageQueue {
             currentNode=currentNode.next;
         }
         return count;
+    }
+
+    public Message findMsg(String sessionId){
+        System.out.println("in findMsg");
+        MessageNode currentNode=head;
+
+        while(currentNode!=null){
+            if(currentNode.message!=null && currentNode.message.getSessionId().equals(sessionId)){
+                System.out.println("findMsg:"+currentNode.message.toString());
+                return currentNode.getMessage(); //stop once found
+            }
+            currentNode=currentNode.next; // move forward
+        }
+        return new Message("noId","noData", LocalDateTime.now());
     }
 }

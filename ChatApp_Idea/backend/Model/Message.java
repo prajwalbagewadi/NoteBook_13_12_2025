@@ -12,7 +12,7 @@ public class Message {
     public Message(String sessionId, String message, LocalDateTime timeStamp) {
         this.sessionId = sessionId;
         this.message = message;
-        this.timeStamp = LocalDateTime.now();
+        this.timeStamp = timeStamp;
     }
 
     public String getSessionId() {

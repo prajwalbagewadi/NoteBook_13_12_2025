@@ -82,7 +82,7 @@ public class SessionService {
     }
 
     public Message receiveMessage(String sessionId){
-        return mq.findMsg(sessionId);
+        return mq.delete(sessionId);
     }
 
 }

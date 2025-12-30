@@ -9,6 +9,7 @@ public class MessageQueue {
     MessageNode head;
 
     public void insert(Message message){
+        System.out.println("MQ insert() called");
         MessageNode newNode = new MessageNode(message);
 
         if(head==null){
@@ -17,7 +18,7 @@ public class MessageQueue {
         }
 
         MessageNode currentNode=head;
-        while(currentNode.next!=null){
+        while(currentNode.next!=null){ //traverse till the end and add node
             currentNode=currentNode.next;
         }
 
@@ -43,17 +44,49 @@ public class MessageQueue {
         return count;
     }
 
-    public Message findMsg(String sessionId){
-        System.out.println("in findMsg");
-        MessageNode currentNode=head;
-
-        while(currentNode!=null){
-            if(currentNode.message!=null && currentNode.message.getSessionId().equals(sessionId)){
-                System.out.println("findMsg:"+currentNode.message.toString());
-                return currentNode.getMessage(); //stop once found
-            }
-            currentNode=currentNode.next; // move forward
+    public Message delete(String sessionId){
+        System.out.println("MQ delete() called");
+        if(head==null){
+            return null;
         }
-        return new Message("noId","noData", LocalDateTime.now());
+        //Case 1: head needs to be deleted
+        if(head.message!=null && head.message.getReceiverId().equals(sessionId)){
+            Message msg=head.getMessage();
+            head=head.next; // move head
+            return msg;
+        }
+        //Case 2: delete from middle or end
+        MessageNode previousNode=head;
+        MessageNode currentNode=head.next;
+        while(currentNode!=null){
+            if(currentNode.message!=null && currentNode.message.getReceiverId().equals(sessionId)){
+                previousNode.next=currentNode.next; //bypass node
+                return currentNode.getMessage();
+            }
+            previousNode=currentNode;
+            currentNode=currentNode.next;
+        }
+//        if(temp==null){
+//            return null;
+//        }
+//        assert temp != null;
+//        return temp.message; //not found
+        // No message for this receiver
+        return null;
     }
+
+//    public Message findMsg(String sessionId){
+//        System.out.println("in findMsg");
+//
+//        MessageNode currentNode=head;
+//
+//        while(currentNode!=null){
+//            if(currentNode.message!=null && currentNode.message.getSessionId().equals(sessionId)){
+//                System.out.println("findMsg data:"+currentNode.message.toString());
+//                return currentNode.getMessage(); //stop once found
+//            }
+//            currentNode=currentNode.next; // move forward
+//        }
+//        return new Message("noId","noData", LocalDateTime.now());
+//    }
 }

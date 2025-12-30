@@ -3,24 +3,34 @@ package com.example.api.Model;
 import java.time.LocalDateTime;
 
 public class Message {
-    private String sessionId;
+    private String senderId;
+    private String receiverId;
     private String message;
     private LocalDateTime timeStamp;
 
     public Message(){}
 
-    public Message(String sessionId, String message, LocalDateTime timeStamp) {
-        this.sessionId = sessionId;
+    public Message(String senderId,String receiverId, String message, LocalDateTime timeStamp) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
         this.message = message;
         this.timeStamp = timeStamp;
     }
 
-    public String getSessionId() {
-        return sessionId;
+    public String getSenderId() {
+        return senderId;
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 
     public String getMessage() {
@@ -42,7 +52,8 @@ public class Message {
     @Override
     public String toString() {
         return "{"+"\n"+
-                "sessionId:" + sessionId + "\n" +
+                "senderId:" + senderId + "\n" +
+                "receiverId:" + receiverId + "\n" +
                 "message:" + message + "\n" +
                 "timeStamp:" + timeStamp + "\n" +
                 "}";

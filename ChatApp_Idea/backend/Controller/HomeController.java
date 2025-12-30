@@ -2,8 +2,10 @@ package com.example.api.Controller;
 
 import com.example.api.Model.Message;
 import com.example.api.Model.Person;
+import com.example.api.Model.SessionId;
 import com.example.api.Service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -47,10 +49,16 @@ public class HomeController {
     }
 
     @PostMapping("/receiveMessage")
-    public Message receiveMessage(@RequestBody String sessionId){
+    public Message receiveMessage(@RequestBody SessionId sessionId){
         HashMap<String,String> resp = new HashMap<>();
         System.out.println("sessionId:"+sessionId);
-        System.out.println("receiveMessage:"+ss.receiveMessage(sessionId).toString());
-        return ss.receiveMessage(sessionId);
+        Message message = ss.receiveMessage(sessionId.getSessionId());
+        if(message==null){
+            //resp.put("status","no messages");
+            return null;
+        }
+        //System.out.println("receiveMessage:"+ss.receiveMessage(sessionId).toString());
+        //resp.put("status",message.toString());
+        return message;
     }
 }
